@@ -90,14 +90,16 @@ Conventions we use and structure of repositories should adhere to a shared under
 |Privacy Preserving Record Linkage|Aggregator DMC|Matching|Run PPRL, assign identifier, probability, return result data set to portal with local and global IDs and metadata for routing|
 |Privacy Preserving Record Linkage|Portal|Queuing|Route identifiers to correct sites|
 |Privacy Preserving Record Linkage|Data Site DMC|Local Update|Update local data set with network wide identifiers,send "completed" response to portal|
-[Two use-cases for visualization/data exploration - one based on a de-identified data set where interactivity does not require multiple queries to source data, the other where intereactivity requires multple queries of source data (OHDSI)]
-|De-ID Data Visualization|Portal|Protocol Specification|Select data visualization method and parameters, subnetwork, parameters|
+|De-ID Data Visualization\*|Portal|Protocol Specification|Select data visualization method and parameters, subnetwork, parameters|
 |De-ID Data Visualization|Data Site DMC|Extract De-ID dataset and return to portal|
 |De-ID Data Visualization|Portal|Queuing|Wait for all sites to respond, send to aggregator node|
 |De-ID Data Visualization|Aggregator/HB DMC|Queuing|Merge Data Sets, return to portal for visualization|
 |De-ID Data Visualization|Portal|Invokde Display Service|Render results (currently a link out)|
-|OHDSI/Multi-Query|Portal|Protocol Specification|Render OHDSI GUI (or container), route each API call to Data Sites|
+|OHDSI/Multi-Query\*|Portal|Protocol Specification|Render OHDSI GUI (or container), route each API call to Data Sites|
 |OHDSI/Multi-Query|Data Site DMC|Local Computation|Invoke OHDSI API, retrieve results, return results|
 |OHDSI/Multi-Query|Portal|Queuing|Wait for all sites to respond (or timeout?), send to aggregator|
 |OHDSI/Multi-Query|Aggregator|Combine and Repackage|Take list of results, combine into a single result in OHDSI format, route to portal|
 |OHDSI/Multi-Query|Portal|Invoke Display Service|Route results to OHDSI GUI and display|
+
+
+[Two use-cases for visualization/data exploration - one based on a de-identified data set where interactivity does not require multiple queries to source data, the other where intereactivity requires multple queries of source data (OHDSI)]
