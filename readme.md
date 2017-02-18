@@ -88,7 +88,7 @@ These are some use cases and how each node in the computation operates. Note tha
 |Horizontally Partitioned Regression|Portal|Invoke Result Display Service|Obtains Final Message with model, displays results|
 |Privacy Preserving Record Linkage|Portal|Protocol Specification|Render html for linkage parameters (identification data set, encryption key?, threshold?, subnetwork)|
 |Privacy Preserving Record Linkage|Data Site DMC|Encryption|Encrypt and return records to portal for queueing (maybe compression too?)|
-|Privacy Preserving Record Linkage|Portal|Queuing|Wait for all sites to respond, route to aggregator node|
+|Privacy Preserving Record Linkage|Portal|Queueing|Wait for all sites to respond, route to aggregator node|
 |Privacy Preserving Record Linkage|Aggregator DMC|Matching|(decompress), Run PPRL, assign identifier, probability, return result data set to portal with local and global IDs and metadata for routing|
 |Privacy Preserving Record Linkage|Portal|Routing|Route identifiers to correct sites (this may require updates to current PMN portal code)|
 |Privacy Preserving Record Linkage|Data Site DMC|Local Update|Update local data set with network wide identifiers, send "completed" response to portal|
