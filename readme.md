@@ -78,20 +78,22 @@ User experinece for groups of users needs to be ironed out in PMN. The permissio
 Conventions we use and structure of repositories should adhere to a shared understanding of these approaches. Ideally, we would have validation procedures to ensure conformance to metadata standards.
 
 ## Use Cases
+These are some use cases and how each node in the computation operates. Note that the Portal is simply used for rendering HTML, queueing, and routing. Note that the OHDSI API may be very slow and require that sites run in "unattended" mode because the API makes multiple calls to the OMOP database, but some visualization methods will be able to run on a single de-identified extract. 
+
 |Use Case|Locus|Role/Component|Computation|
 |---|---|---|---|
-|Horizontally Partitioned Regression|Portal|Protocol Specification|Render html for analysis parameters (sites, data variables & model specificaitons/parameters, package specifications to distribute to nodes (encryption key to data site DMCs?, thresholds to aggregator/HB DMCs)|
+|Horizontally Partitioned Regression|Portal|Protocol Specification|Render html for analysis parameters (sites, data variables & model specificaitons/parameters)|
 |Horizontally Partitioned Regression|Data Site DMC|Model Scoring|Fits each iteration of model to local data, returns error and var-cov matrix|
 |Horizontally Partitioned Regression|Aggregator/HB DMC|Model Parameter Estimation/Iteration|Retrieves error from each locally scored model, computes new coefficients/parameters on each iteration using IRLS algorithm, on convergence sends results for display.|
 |Horizontally Partitioned Regression|Portal|Invoke Result Display Service|Obtains Final Message with model, displays results|
 |Privacy Preserving Record Linkage|Portal|Protocol Specification|Render html for linkage parameters (identification data set, encryption key?, threshold?, subnetwork)|
 |Privacy Preserving Record Linkage|Data Site DMC|Encryption|Encrypt and return records to portal for queueing (maybe compression too?)|
-|Privacy Preserving Record Linkage|Portal|Queuing|Wait for all sites to respond, send to aggregator node|
-|Privacy Preserving Record Linkage|Aggregator DMC|Matching|Run PPRL, assign identifier, probability, return result data set to portal with local and global IDs and metadata for routing|
-|Privacy Preserving Record Linkage|Portal|Queuing|Route identifiers to correct sites|
-|Privacy Preserving Record Linkage|Data Site DMC|Local Update|Update local data set with network wide identifiers,send "completed" response to portal|
+|Privacy Preserving Record Linkage|Portal|Queuing|Wait for all sites to respond, route to aggregator node|
+|Privacy Preserving Record Linkage|Aggregator DMC|Matching|(decompress), Run PPRL, assign identifier, probability, return result data set to portal with local and global IDs and metadata for routing|
+|Privacy Preserving Record Linkage|Portal|Routing|Route identifiers to correct sites (this may require updates to current PMN portal code)|
+|Privacy Preserving Record Linkage|Data Site DMC|Local Update|Update local data set with network wide identifiers, send "completed" response to portal|
 |De-ID Data Visualization\*|Portal|Protocol Specification|Select data visualization method and parameters, subnetwork, parameters|
-|De-ID Data Visualization|Data Site DMC|Extract De-ID dataset and return to portal|
+|De-ID Data Visualization|Data Site DMC|Extract De-ID dataset and return to portal (compression?)|
 |De-ID Data Visualization|Portal|Queuing|Wait for all sites to respond, send to aggregator node|
 |De-ID Data Visualization|Aggregator/HB DMC|Queuing|Merge Data Sets, return to portal for visualization|
 |De-ID Data Visualization|Portal|Invokde Display Service|Render results (currently a link out)|
@@ -100,6 +102,7 @@ Conventions we use and structure of repositories should adhere to a shared under
 |OHDSI/Multi-Query|Portal|Queuing|Wait for all sites to respond (or timeout?), send to aggregator|
 |OHDSI/Multi-Query|Aggregator|Combine and Repackage|Take list of results, combine into a single result in OHDSI format, route to portal|
 |OHDSI/Multi-Query|Portal|Invoke Display Service|Route results to OHDSI GUI and display|
+
 
 
 [Two use-cases for visualization/data exploration - one based on a de-identified data set where interactivity does not require multiple queries to source data, the other where intereactivity requires multple queries of source data (OHDSI)]
