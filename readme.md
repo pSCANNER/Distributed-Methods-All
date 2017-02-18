@@ -99,7 +99,7 @@ These are some use cases and how each node in the computation operates. Note tha
 |De-ID Data Visualization|Portal|Invokde Display Service|Render results (currently a link out)|
 |OHDSI/Multi-Query\*|Portal|Protocol Specification|Render OHDSI GUI (or container), route each API call to Data Sites|
 |OHDSI/Multi-Query|Data Site DMC|Local Computation|Invoke OHDSI API, retrieve results, return results|
-|OHDSI/Multi-Query|Portal|Queuing|Wait for all sites to respond (or timeout?), send to aggregator|
+|OHDSI/Multi-Query|Portal|Queueing|Wait for all sites to respond (or timeout?), send to aggregator|
 |OHDSI/Multi-Query|Aggregator|Merge and Prep|Take list of results, combine into a single result in OHDSI format, route to portal|
 |OHDSI/Multi-Query|Portal|Invoke Display Service|Route results to OHDSI GUI and display|
 
