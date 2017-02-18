@@ -95,12 +95,12 @@ These are some use cases and how each node in the computation operates. Note tha
 |De-ID Data Visualization\*|Portal|Protocol Specification|Select data visualization method and parameters, subnetwork, parameters|
 |De-ID Data Visualization|Data Site DMC|Extraction|Extract De-ID dataset and return to portal (compression?)|
 |De-ID Data Visualization|Portal|Queuing|Wait for all sites to respond, send to aggregator node|
-|De-ID Data Visualization|Aggregator/HB DMC|Queuing|Merge Data Sets, return to portal for visualization|
+|De-ID Data Visualization|Aggregator/HB DMC|Merge and Prep|Merge Data Sets, prepare for display, return to portal for visualization|
 |De-ID Data Visualization|Portal|Invokde Display Service|Render results (currently a link out)|
 |OHDSI/Multi-Query\*|Portal|Protocol Specification|Render OHDSI GUI (or container), route each API call to Data Sites|
 |OHDSI/Multi-Query|Data Site DMC|Local Computation|Invoke OHDSI API, retrieve results, return results|
 |OHDSI/Multi-Query|Portal|Queuing|Wait for all sites to respond (or timeout?), send to aggregator|
-|OHDSI/Multi-Query|Aggregator|Combine and Repackage|Take list of results, combine into a single result in OHDSI format, route to portal|
+|OHDSI/Multi-Query|Aggregator|Merge and Prep|Take list of results, combine into a single result in OHDSI format, route to portal|
 |OHDSI/Multi-Query|Portal|Invoke Display Service|Route results to OHDSI GUI and display|
 
 
