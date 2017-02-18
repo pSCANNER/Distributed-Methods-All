@@ -77,14 +77,13 @@ User experinece for groups of users needs to be ironed out in PMN. The permissio
 ## Summary
 Conventions we use and structure of repositories should adhere to a shared understanding of these approaches. Ideally, we would have validation procedures to ensure conformance to metadata standards.
 
-## Example
+## Use Cases
 |Use Case|Locus|Role/Component|Computation|
-|-|-|-|-|
+|---|---|---|---|
 |Horizontally Partitioned Regression|Portal|Protocol Specification|Render html for analysis parameters (sites, data variables & model specificaitons/parameters, package specifications to distribute to nodes (encryption key to data site DMCs?, thresholds to aggregator/HB DMCs)|
 |Horizontally Partitioned Regression|Data Site DMC|Model Scoring|Fits each iteration of model to local data, returns error and var-cov matrix|
 |Horizontally Partitioned Regression|Aggregator/HB DMC|Model Parameter Estimation/Iteration|Retrieves error from each locally scored model, computes new coefficients/parameters on each iteration using IRLS algorithm, on convergence sends results for display.|
 |Horizontally Partitioned Regression|Portal|Invoke Result Display Service|Obtains Final Message with model, displays results|
-
 |Privacy Preserving Record Linkage|Portal|Protocol Specification|Render html for linkage parameters (identification data set, encryption key?, threshold?, subnetwork)|
 |Privacy Preserving Record Linkage|Data Site DMC|Encryption|Encrypt and return records to portal for queueing (maybe compression too?)|
 |Privacy Preserving Record Linkage|Portal|Queuing|Wait for all sites to respond, send to aggregator node|
@@ -97,7 +96,6 @@ Conventions we use and structure of repositories should adhere to a shared under
 |De-ID Data Visualization|Portal|Queuing|Wait for all sites to respond, send to aggregator node|
 |De-ID Data Visualization|Aggregator/HB DMC|Queuing|Merge Data Sets, return to portal for visualization|
 |De-ID Data Visualization|Portal|Invokde Display Service|Render results (currently a link out)|
-
 |OHDSI/Multi-Query|Portal|Protocol Specification|Render OHDSI GUI (or container), route each API call to Data Sites|
 |OHDSI/Multi-Query|Data Site DMC|Local Computation|Invoke OHDSI API, retrieve results, return results|
 |OHDSI/Multi-Query|Portal|Queuing|Wait for all sites to respond (or timeout?), send to aggregator|
