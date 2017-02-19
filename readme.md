@@ -86,7 +86,6 @@ These are some use cases and how each node in the computation operates. Note tha
 |Horizontally Partitioned Regression|Data Site DMC|Model Scoring|Fits each iteration of model to local data, returns error and var-cov matrix|
 |Horizontally Partitioned Regression|Aggregator/HB DMC|Model Parameter Estimation/Iteration|Retrieves error from each locally scored model, computes new coefficients/parameters on each iteration using IRLS algorithm, on convergence sends results for display.|
 |Horizontally Partitioned Regression|Portal|Invoke Result Display Service|Obtains Final Message with model, displays results|
-
 |Privacy Preserving Record Linkage|Data Site|Preparation|Offline/In advance create encrypted dataset wtih shared key, register to DMC, and (maybe compression too?)|
 |Privacy Preserving Record Linkage|Portal|Protocol Specification|Render html for linkage parameters (identification of pre-encrypted data set, threshold?, subnetwork)|
 |Privacy Preserving Record Linkage|Data Site DMC|Retrieval|Retrieve specified data set and send records to portal for queueing (maybe compression too?)|
