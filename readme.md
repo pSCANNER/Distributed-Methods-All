@@ -9,7 +9,7 @@ In order for method to be implemented successfully in a distributed framework, m
 
 Current approach is that method should must be broken down into 4 component resources - all of the Distribted Methods should assume this model.
 
-1. Server side query parameterization & UI (right now integrated with PMN portal)
+1. Server side query parameterization & UI (right now integrated with PMN portal - [NewAnalysis.cs](https://github.com/pSCANNER/PopMedNet/tree/master/Portal/DNS_SCNR-Source/DNS_SCNR/Lpp.Scanner.Workflow.ScannerAnalysis/Activities))
 2. Client-side (need to be executed by each site),
 3. "aggregator" (if anything needs to be computed for all sites participating in a distributed query - can be simple pass-through)
 4. Server-side result display (right now not tightly integrated with PMN portal, so could route to a Shiny server, for example)
