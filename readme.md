@@ -10,7 +10,7 @@ In order for method to be implemented successfully in a distributed framework, m
 Current approach is that methods that can be included in a pSCANNER Protocol and can be proposed to a subnetwork in a [PMN Scanner Study](https://github.com/pSCANNER/PopMedNet/tree/master/Portal/DNS_SCNR-Source/DNS_SCNR/Lpp.Scanner.Workflow.ScannerStudy) Request Type should must be broken down into 4 component resources - all of the Distribted Methods should assume this model.
 
 1. Server side query parameterization & UI (right now integrated with PMN portal - [NewAnalysis.cs](https://github.com/pSCANNER/PopMedNet/tree/master/Portal/DNS_SCNR-Source/DNS_SCNR/Lpp.Scanner.Workflow.ScannerAnalysis/Activities))
-2. Client-side - computatons that need to be executed by each site. In PMN framework, this is managed by The DMC.
+2. Client-side - computatons that need to be executed by each site. In PMN framework, this is managed by The DMC. pSCANNER Adapters are [here](https://github.com/pSCANNER/PopMedNet/tree/master/DNC/Lpp.Adapters/Lpp.Scanner.DataMart.Model.Processors)
 3. "Aggregator" code that specifies what, if anything, needs to be computed on combined resulst for all sites participating in a distributed query. This may be simple pass-through for display, concatenation, or one-time compuation, as well as more complex operations - [the Aggregating.cs](https://github.com/pSCANNER/PopMedNet/blob/master/Portal/DNS_SCNR-Source/DNS_SCNR/Lpp.Scanner.Workflow.ScannerAnalysis/Activities/Aggregating.cs) PMN code handles the queueing and DMC result collection currently.
 4. Server-side result display (right now not tightly integrated with PMN portal, so could route to a Shiny server, for example)
 
