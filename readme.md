@@ -1,4 +1,6 @@
-# Distributed Methods
+# Distributed Methods 
+In order to facilitate platform independence for analysis methods, we are trying to observe the syntax and specification formats developed for PMML: http://dmg.org 
+Data Transformations and processing steps are not as well represented in PMML expressions.
 
 ## Summary
 "Distributed Methods" refers to data operations that can be implemented using map-reduce architecture with each node in the network performing data operations independently, orchestrated by a central system that manages intermediate and final results ("aggregator", or "mapper" or "oracle"). Methods include Analysis Methods (e.g. regression, SVM), Record Linkage Methods (a.k.a EMPI), Data Transformation, and Data Profiling Methods. 
