@@ -27,7 +27,7 @@ These convnetions need to be specified clearly as we work through the different 
 
 Methods follow basic input->{action}->output model. Inputs and outputs are typically datasets (or arrays), actions are typically computations that may be user defined functions or functions built into existing computing platforms. In distributed methods, actions are distributed over the network. In many cases a high level action is parallelized and decomponsed into computations. Most distributed methods have two roles corresponding to different categories of actions. One role is related to handling consolidation of parallelized outputs ("aggregator") and the other implements operations on locally managed data ("client")
 
-In order to facilitate platform independence for analysis methods, we are trying to observe the syntax and specification formats developed for PMML: http://dmg.org. A network of heterogeneous PMML or PFA -consumers- (e.g. SPSS, R, SAS, KNIME) can collaborate to estimate any generalized linear model (or any model with a convex error function) using gradient decent or Newton-Raphson methods orchestrated by an "aggregator". So only the aggregator node needs to have the user-defined functions for iteratively updating the coefficients until the error converges. We might consider some of the conventions and requirements in PFA. In particular, "aggregator" functions have been modeled in a way that PFA calls a `Folding Engine` that allows us to clearly articulate that PFA `tally` activities are handled by PMN whereas `merge` activities operate on collections.
+In order to facilitate platform independence for analysis methods, we are trying to observe the syntax and specification formats developed for PMML: http://dmg.org. A network of heterogeneous PMML or PFA _consumers_ (e.g. SPSS, R, SAS, KNIME) can collaborate to estimate any generalized linear model (or any model with a convex error function) using gradient decent or Newton-Raphson methods orchestrated by an "aggregator". So only the aggregator node needs to have the user-defined functions for iteratively updating the coefficients until the error converges. We might consider some of the conventions and requirements in PFA. In particular, "aggregator" functions have been modeled in a way that PFA calls a `Folding Engine` that allows us to clearly articulate that PFA `tally` activities are handled by PMN whereas `merge` activities operate on collections.
 http://dmg.org/pfa/docs/document_structure/ 
 
 While PMML model includes transformations, Data Transformations and processing steps are not as well represented in PMML expressions and we may opt to extend them with expressions/UDFs from another standard (e.g. HQMF/CQF).
@@ -62,8 +62,12 @@ TODO: Consider use of the FHIR Task model to pipe and chain data operations toge
 ## Platform Independent Specifications for Data and Operations
 A desired feature of the pSCANNER Architecture is supporting a requirement for supporting heterogeneous data models and software enviornments. There are different ways of supporting this requirement.
 
+### Code Generation as a Service (CGaaS?) vs. Stored Procedures/Packages
+We could use PFA and/or PMML as inputs to a central service for code generation, or we could contribute/extend packages or stored procedures to existing systems. (E.g. RPMML package on CRAN)
+
 ### Specifying Operations
 Natural language specificaitons as well as platform specific technical/executable programs are required. 
+
 1. Maintain independent versions of programs with different stewards (e.g. PostGres version and Oracle version). This approach is the most likely to get out of sync across implementations, but also will be the one that is easiest to understand. This is what we do with all of our ETL from source systems to CDMs and between different CDMs.   
 2. Code Generation from Platform Specific Impemenation - Maintain a reference file in one format, and use software that converts from one platform/dialect to another (e.g. LINQ, many different R-based analysis frameworks).  
 3. Code Generation from Platform Independent Specificaiton - Maintain a platform-independent specifciation for operations and employ translation software to specific environemnts (e.g. converting XML or JSON specifications to SQL, converting PMML into R or SAS). 
