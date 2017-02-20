@@ -20,15 +20,17 @@ Technically, any distributed method must specify
 * What data output formats are expected for components 1-4
 * Requirements and platforms/semantics/models for each step.
 
-## Conventions
+Note that the PFA model calls \#3 a "Folding Engine" and splits it into "Tally" actions and "Merging". Currently PMN-pSCANNER approach does not initiate Merging until all parallelized outputs have been obtained by the PMN-pSCANNER Aggregating.cs function and subsequently released to the DMC responsible for "Merging" operations.  
+
+## Conventions and Decomponsition of Methods
 These convnetions need to be specified clearly as we work through the different use-cases. More detail below...
 
 Methods follow basic input->{action}->output model. Inputs and outputs are typically datasets (or arrays), actions are typically computations that may be user defined functions or functions built into existing computing platforms. In distributed methods, actions are distributed over the network. In many cases a high level action is parallelized and decomponsed into computations. Most distributed methods have two roles corresponding to different categories of actions. One role is related to handling consolidation of parallelized outputs ("aggregator") and the other implements operations on locally managed data ("client")
 
-In order to facilitate platform independence for analysis methods, we are trying to observe the syntax and specification formats developed for PMML: http://dmg.org. A network of heterogeneous PMML or PFA -consumers- (e.g. SPSS, R, SAS, KNIME) can collaborate to estimate any generalized linear model (or any model with a convex error function) using gradient decent or Newton-Raphson methods orchestrated by an "aggregator". So only the aggregator node needs to have the user-defined functions for iteratively updating the coefficients until the error converges. 
+In order to facilitate platform independence for analysis methods, we are trying to observe the syntax and specification formats developed for PMML: http://dmg.org. A network of heterogeneous PMML or PFA -consumers- (e.g. SPSS, R, SAS, KNIME) can collaborate to estimate any generalized linear model (or any model with a convex error function) using gradient decent or Newton-Raphson methods orchestrated by an "aggregator". So only the aggregator node needs to have the user-defined functions for iteratively updating the coefficients until the error converges. We might consider some of the conventions and requirements in PFA. In particular, "aggregator" functions have been modeled in a way that PFA calls a `Folding Engine` that allows us to clearly articulate that PFA `tally` activities are handled by PMN whereas `merge` activities operate on collections.
+http://dmg.org/pfa/docs/document_structure/ 
 
-While PMML model includes transformations, Data Transformations and processing steps are not as well represented in PMML expressions and we may opt to extend them with expressions from another standard (e.g. HQMF/CQF).
-
+While PMML model includes transformations, Data Transformations and processing steps are not as well represented in PMML expressions and we may opt to extend them with expressions/UDFs from another standard (e.g. HQMF/CQF).
 
 ## Creating Subnetworks devoted to specific operations and projects. 
 The pSCANNER-PMN system enables users to create sub-groups of users and resources that can collaborate on a range of data operations (methods) in an ongoing way. For example, a subnetwork containing only UC System might approve cohort discovery methods. All of the PRIME participants in pSCANNER might approve mutual sharing of quality measurement. 
