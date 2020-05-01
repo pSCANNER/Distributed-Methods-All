@@ -1,6 +1,7 @@
-Here is where we will store queries and technical specifications. 
-1. Uploaded technical specifications 
-2. Uploaded Code
+### Here is where we will store queries and technical specifications. 
+* Parent Directory for Each Query
+   * Uploaded technical specifications 
+   * Uploaded Code
 
 Output 1: Rapid deployment of a cross-institutional, EHR-based COVID-19 focused data warehouse that is capable of responding to complex cross-institutional queries.
 
